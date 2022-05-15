@@ -632,6 +632,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Par Can
       objectReference: {fileID: 0}
+    - target: {fileID: 7598990712091227398, guid: dad7b2017927b3c46b781d8fc4f9afdc, type: 3}
+      propertyPath: dmxAddress
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7998305765897033749, guid: dad7b2017927b3c46b781d8fc4f9afdc, type: 3}
       propertyPath: m_RootOrder
       value: 2

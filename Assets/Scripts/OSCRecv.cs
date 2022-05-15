@@ -22,12 +22,15 @@ public class OSCRecv : MonoBehaviour
         {            
             if ( oscHandler != null && dmxAddress > -1 && lightOutput != null )
             {
-                int r = oscHandler.dmxVals[ dmxAddress     ];
-                int g = oscHandler.dmxVals[ dmxAddress + 1 ];
-                int b = oscHandler.dmxVals[ dmxAddress + 2 ];
+                int c = oscHandler.dmxVals[ dmxAddress     ];
+                int r = oscHandler.dmxVals[ dmxAddress + 1 ];
+                int g = oscHandler.dmxVals[ dmxAddress + 2 ];
+                int b = oscHandler.dmxVals[ dmxAddress + 3 ];
 
-                lightOutput.color    = new Color((float)r / 255.0f, (float)g / 255.0f, (float)b / 255.0f, 1.0f);
-                facePlateLight.color = new Color((float)r / 255.0f, (float)g / 255.0f, (float)b / 255.0f, 1.0f);
+                float brightness = (float)c / 255.0f;
+
+                lightOutput.color    = new Color((float)r / 255.0f, (float)g / 255.0f, (float)b / 255.0f, brightness);
+                facePlateLight.color = new Color((float)r / 255.0f, (float)g / 255.0f, (float)b / 255.0f, brightness);
 
 
             // set light based on channel
