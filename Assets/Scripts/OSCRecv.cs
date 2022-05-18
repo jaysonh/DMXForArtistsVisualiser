@@ -15,26 +15,30 @@ public class OSCRecv : MonoBehaviour
             GameObject child = gameObject.transform.GetChild(0).gameObject;
             lightOutput      = gameObject.transform.GetChild(1).gameObject.GetComponent<Light>();
             facePlateLight   = gameObject.transform.GetChild(2).gameObject.GetComponent<Light>();
-    }
+        }
 
         // Update is called once per frame
         void Update()
-        {            
-            if ( oscHandler != null && dmxAddress > -1 && lightOutput != null )
+        {
+            if (oscHandler != null && dmxAddress > -1 && lightOutput != null)
             {
-                int c = oscHandler.dmxVals[ dmxAddress     ];
-                int r = oscHandler.dmxVals[ dmxAddress + 1 ];
-                int g = oscHandler.dmxVals[ dmxAddress + 2 ];
-                int b = oscHandler.dmxVals[ dmxAddress + 3 ];
+                
+                int c = oscHandler.getValue(0, dmxAddress);     //oscHandler.dmxVals[ dmxAddress     ]; // brightness 
+                int r = oscHandler.getValue(0, dmxAddress + 1); //oscHandler.dmxVals[ dmxAddress + 1 ]; // red
+                int g = oscHandler.getValue(0, dmxAddress + 2); //oscHandler.dmxVals[ dmxAddress + 2 ]; // green
+                int b = oscHandler.getValue(0, dmxAddress + 3); //oscHandler.dmxVals[ dmxAddress + 3 ]; // blue
+                 
+            // make sure we are getting valid data
+                if (c >= 0 && r >= 0 && g >= 0 && b >= 0)
+                {
+                    Debug.Log("light " + dmxAddress + " getting: " + c );
+                    float brightness = (float)c / 255.0f;
 
-                float brightness = (float)c / 255.0f;
-
-                lightOutput.color    = new Color((float)r / 255.0f, (float)g / 255.0f, (float)b / 255.0f, brightness);
-                facePlateLight.color = new Color((float)r / 255.0f, (float)g / 255.0f, (float)b / 255.0f, brightness);
-
-
-            // set light based on channel
-            }
+                    // Set the light colour
+                    lightOutput.color = new Color((float)r / 255.0f, (float)g / 255.0f, (float)b / 255.0f, brightness);
+                    facePlateLight.color = new Color((float)r / 255.0f, (float)g / 255.0f, (float)b / 255.0f, brightness);
+                }
+            }        
         }
         OSCHandler oscHandler;
         Light lightOutput;
