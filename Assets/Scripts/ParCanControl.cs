@@ -42,10 +42,16 @@ public class ParCanControl : MonoBehaviour
                 {
                     float brightness = (float)c / 255.0f;
 
-                    // Set the light colour
-                    lightOutput.color    = new Color((float)r / 255.0f, (float)g / 255.0f, (float)b / 255.0f, brightness);
-                    facePlateLight.color = new Color((float)r / 255.0f, (float)g / 255.0f, (float)b / 255.0f, brightness);
-                }
+                // Set the light colour
+                lightOutput.color = new Color(   ((float)r / 255.0f) * brightness,
+                                                 ((float)g / 255.0f) * brightness,
+                                                 ((float)b / 255.0f) * brightness,
+                                                 1.0f);
+                    facePlateLight.color = new Color(((float)r / 255.0f) * brightness,
+                                                 ((float)g / 255.0f) * brightness,
+                                                 ((float)b / 255.0f) * brightness,
+                                                 1.0f);
+            }
             }        
         }
         OSCHandler oscHandler;
