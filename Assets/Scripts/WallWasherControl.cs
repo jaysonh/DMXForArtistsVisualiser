@@ -45,7 +45,10 @@ public class WallWasherControl : MonoBehaviour
                 for (int i = 0; i < numBarLEDS; i++) {
                     float brightness = (float)c / 255.0f;
 
-                    barLEDS[i].color = new Color((float)r / 255.0f, (float)g / 255.0f, (float)b / 255.0f, brightness);
+                    barLEDS[i].color = new Color(((float)r / 255.0f) * brightness,
+                                                 ((float)g / 255.0f) * brightness,
+                                                 ((float)b / 255.0f) * brightness,
+                                                 1.0f);
                 }
             }
         }
