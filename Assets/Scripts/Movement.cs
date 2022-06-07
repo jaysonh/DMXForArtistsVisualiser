@@ -40,9 +40,9 @@ public class Movement : MonoBehaviour
         }
 
         // Clamp movement to inside building
-        transform.position = new Vector3(
+        /*transform.position = new Vector3(
               Mathf.Clamp(transform.position.x, MIN_X, MAX_X),
               Mathf.Clamp(transform.position.y, MIN_Y, MAX_Y),
-              Mathf.Clamp(transform.position.z, MIN_Z, MAX_Z));
+              Mathf.Clamp(transform.position.z, MIN_Z, MAX_Z));*/
     }
 }
