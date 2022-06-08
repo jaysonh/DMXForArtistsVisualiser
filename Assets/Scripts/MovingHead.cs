@@ -19,14 +19,15 @@ public class MovingHead : MonoBehaviour
         if (oscHandler != null && dmxAddress > -1 && lightOutput != null)
         {
 
-            int c = oscHandler.getValue( 0, briAddr );     //oscHandler.dmxVals[ dmxAddress     ]; // brightness 
-            int r = oscHandler.getValue( 0, redAddr ); //oscHandler.dmxVals[ dmxAddress + 1 ]; // red
-            int g = oscHandler.getValue( 0, grnAddr ); //oscHandler.dmxVals[ dmxAddress + 2 ]; // green
-            int b = oscHandler.getValue( 0, bluAddr ); //oscHandler.dmxVals[ dmxAddress + 3 ]; // blue
+            int c = oscHandler.getValue( 0, dmxAddress + briAddr-1);     //oscHandler.dmxVals[ dmxAddress     ]; // brightness 
+            int r = oscHandler.getValue( 0, dmxAddress + redAddr-1); //oscHandler.dmxVals[ dmxAddress + 1 ]; // red
+            int g = oscHandler.getValue( 0, dmxAddress + grnAddr-1); //oscHandler.dmxVals[ dmxAddress + 2 ]; // green
+            int b = oscHandler.getValue( 0, dmxAddress + bluAddr-1); //oscHandler.dmxVals[ dmxAddress + 3 ]; // blue
 
-            float pan  = ( (float) oscHandler.getValue(0, panCoarseAddr) / 255.0f) * 180.0f - 180 -90.0f;
-            float tilt = ( (float) oscHandler.getValue( 0, tiltCoarseAddr ) / 255.0f) * 120.0f - 90.0f;
+            float pan  = ( (float) oscHandler.getValue(0,  dmxAddress + panCoarseAddr-1) / 255.0f) * 180.0f - 180 -90.0f;
+            float tilt = ( (float) oscHandler.getValue( 0, dmxAddress + tiltCoarseAddr-1) / 255.0f) * 120.0f - 90.0f;
 
+            Debug.Log(pan + "," + tilt);
             topSection = transform.Find("top").gameObject;
             topSection.transform.rotation = Quaternion.Euler(tilt, pan, 0.0f); ;// ((float)pan, 0.0f, 0.0f, Space.World);
             
